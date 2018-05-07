@@ -1,0 +1,21 @@
+import numpy as np
+import matplotlib.pyplot as plt
+x=np.linspace(-10,10,100)
+#t=np.sin(x)
+t=1+(x**2)+(x**3)+(x**4)
+phi=np.zeros((21,100),dtype=float)
+print(np.shape(x))
+for i in range(-10,11):
+	phi[i]=2*(np.exp(-((x+(i))**2)))
+	#phi[i]=1/(1+np.exp(-x+i))
+# phi[5]=2*(np.exp(-((x+(8))**2)))+np.random.uniform(0,1)
+# phi[6]=2*(np.exp(-((x+(8))**2)))+np.random.uniform(0,1)
+print(np.shape(phi))
+plt.plot(x,phi.T)
+w=np.dot(np.dot((np.linalg.inv(np.dot(phi,phi.T))),phi),t)
+print(max(w))
+print(w)
+y=np.dot(w.T,phi)
+plt.plot(x,t)
+plt.plot(x,y)
+plt.show()
